@@ -18,6 +18,7 @@
   },
   "homepage": "https://gitlab.com/leshz/react-test#readme",
   "dependencies": {
+    "normalize-scss": "^7.0.1",
     "react": "^16.10.1",
     "react-dom": "^16.10.1"
   },
