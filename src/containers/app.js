@@ -2,7 +2,8 @@ import React from 'react';
 import '../style/app.scss';
 import Header from '../components/header/header';
 import WriteStade from '../components/writeStade/writeStade';
-import CardStade from '../components/cardStade/cardStade';
+import TimeLine from '../components/timeLine/timeline';
+import data from '../info';
 
 const App = () => {
   return (
@@ -10,7 +11,8 @@ const App = () => {
       <Header />
       <div className='container'>
         <WriteStade />
-        <CardStade />
+
+        <TimeLine data={data} />
       </div>
     </div>
   );

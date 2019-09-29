@@ -1,0 +1,22 @@
+@import "../../../style/common.scss";
+
+.actions {
+  display: flex;
+  position: relative;
+  width: 100%;
+  &:after {
+    position: absolute;
+    content: "";
+    width: 1px;
+    left: 50%;
+    background-color: $grey;
+    height: 100%;
+  }
+  &--button {
+    background: $white;
+    padding: 15px 20px;
+    color: $green;
+    flex-basis: 50%;
+    border-bottom: 1px solid $grey;
+  }
+}
