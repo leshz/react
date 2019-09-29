@@ -1,9 +1,47 @@
-@import './normalize/normalized.scss';
-@import './abstracts/variables.scss';
-@import './abstracts/mixings.scss';
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700&display=swap');
+@import "./normalize/normalized.scss";
+@import "./abstracts/variables.scss";
+@import "./abstracts/mixings.scss";
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700&display=swap");
 
 body,
 html {
-    font-family: 'Montserrat', sans-serif; 
+  font-family: "Montserrat", sans-serif;
+  font-weight: normal;
+  background: $background;
+}
+
+.container {
+  margin: 1em auto;
+  max-width: 850px;
+  padding: 5px 15px;
+  position: relative;
+  width: 100%;
+}
+button,
+a {
+  outline: none;
+}
+button{
+    background: $green;
+    color: $white;
+    border: none;
+    padding: 10px 20px;
+}
+input,
+textarea {
+  @extend button;
+  color: $green;
+  padding: 15px;
+  display: inline-block;
+  width: 100%;
+  background: $white;
+  font-size: 16px;
+  &::placeholder {
+    color: $green;
+    opacity: 1;
+  }
+}
+
+* {
+  box-sizing: border-box;
 }

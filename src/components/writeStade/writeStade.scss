@@ -1,0 +1,20 @@
+@import "../../style/common.scss";
+
+.user-stade {
+  display: block;
+  margin: 10px 0;
+  border-radius: 5px;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    &--text {
+      background: white;
+      border: 1px solid $gray;
+      resize: vertical;
+    }
+    &--button {
+      align-self: flex-end;
+      margin: 15px 0;
+    }
+  }
+}
