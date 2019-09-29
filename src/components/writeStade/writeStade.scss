@@ -9,12 +9,13 @@
     flex-direction: column;
     &--text {
       background: white;
-      border: 1px solid $gray;
+      border: 1px solid $grey;
       resize: vertical;
     }
     &--button {
       align-self: flex-end;
       margin: 15px 0;
+      border-radius: 2px;
     }
   }
 }
