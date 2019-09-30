@@ -5,7 +5,6 @@ class WriteState extends React.Component {
 
   constructor(props) {
     super(props);
-    // this.state = { text: ooo };
     this.submitHandler = this.submitHandler.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.state = { text: '', hideButton: true };
@@ -15,7 +14,7 @@ class WriteState extends React.Component {
     ev.preventDefault();
     const { onSubmit } = this.props;
     const { text } = this.state;
-    onSubmit(ev, text);
+    onSubmit(text);
     this.setState({
       text: '', hideButton: true });
   }
@@ -33,11 +32,10 @@ class WriteState extends React.Component {
   render() {
     const textButton = 'Publicar';
     const { text, hideButton } = this.state;
+    const { show } = this.props;
 
     return (
-
-      <div className='user-stade'>
-
+      <div className={`user-stade ${show ? '' : 'hide'}`}>
         <form className='user-stade__form' onSubmit={this.submitHandler}>
           <input name='textpost' autoComplete='off' onChange={this.handleChange} value={text || ''} className='user-stade__form--text' type='text' placeholder='Escribte aquí tu estado' />
           <button className={`user-stade__form--button ${hideButton ? 'hide' : ''}`} type='submit'>{textButton}</button>
@@ -45,9 +43,7 @@ class WriteState extends React.Component {
 
       </div>
     );
-
   }
-
 }
 
 export default WriteState;

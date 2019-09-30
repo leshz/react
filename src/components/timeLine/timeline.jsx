@@ -33,7 +33,7 @@ class TimeLine extends React.Component {
     return (
       <div>
         <section>
-          <WriteState onSubmit={this.makeANewPost} />
+          <WriteState show={true} onSubmit={this.makeANewPost} />
         </section>
         { posts.map((post, index) => {
           return <CardStade key={index} postInfo={post} />;

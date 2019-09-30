@@ -18,33 +18,45 @@ class CardStade extends React.Component {
     this.makeAReaction = this.makeAReaction.bind(this);
   }
 
-  makeAComment(ev, text) {
-    const { post } = this.state;
-    const newComment = {
-      userName: 'Jeffer Barragan',
-      avatarURL: 'https://picsum.photos/200',
-      contentPost: text,
-      timeComment: '0 days',
-    };
-    post.comments.push(newComment);
-    this.setState(post);
+  makeAComment(text) {
+    if (text !== '') {
+
+      const { post } = this.state;
+      const newComment = {
+        userName: 'Jeffer Barragan',
+        avatarURL: 'https://picsum.photos/200',
+        contentPost: text,
+        timeComment: '0 days',
+      };
+      post.comments.push(newComment);
+      this.setState({ post });
+    }
   }
 
   static getRandomNumber(min, max) {
     return parseInt(Math.random() * (max - min) + min, 10);
   }
 
-  makeAReaction() {
+  makeAReaction(eventFrom) {
 
-    const { post } = this.state;
-    const emojis = ['😁', '❤️', '💎', '🤟🏻', '😃', '👌🏻', '😎', '🤬'];
-    const lastReactions = post.reactions.slice(-2);
-    const number = CardStade.getRandomNumber(0, emojis.length);
+    if (eventFrom === 'react') {
+      const { post } = this.state;
+      const emojis = ['😁', '❤️', '💎', '🤟🏻', '😃', '👌🏻', '😎', '🤬'];
+      const lastReactions = post.reactions.slice(-2);
+      const number = CardStade.getRandomNumber(0, emojis.length);
 
-    lastReactions.push(emojis[number]);
-    post.reactions = lastReactions;
+      lastReactions.push(emojis[number]);
+      post.reactions = lastReactions;
 
-    this.setState(post);
+      this.setState(post);
+
+    } else if (eventFrom === 'comment') {
+
+      const { showComment } = this.state;
+
+      this.setState({ showComment: !showComment });
+    }
+
   }
 
   render() {
@@ -72,7 +84,7 @@ class CardStade extends React.Component {
               // eslint-disable-next-line react/no-array-index-key
               return <Comment key={index} data={comment} />;
             })}
-            <WriteState className={`${showComment ? '' : 'hide'}`} onSubmit={this.makeAComment} />
+            <WriteState show={showComment} onSubmit={this.makeAComment} />
           </div>
         </div>
       </section>
@@ -81,4 +93,3 @@ class CardStade extends React.Component {
 }
 
 export default CardStade;
-
