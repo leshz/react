@@ -5,6 +5,7 @@ class Resume extends React.Component {
 
   render() {
     const { reactions, comments } = this.props;
+    const text = comments === 1 ? 'comentario ' : 'comentarios ';
     // eslint-disable-next-line react/no-array-index-key
     const renderReactions = reactions.map((reaction, index) => <span className='resume--reactions__item' key={index} role='img' aria-label='like'>{reaction}</span>);
 
@@ -15,7 +16,7 @@ class Resume extends React.Component {
         </div>
         <div className='resume--counter'>
           <span className='resume--counter__comments'>
-            {`${comments} Comentarios`}
+            {`${comments} ${text}`}
           </span>
         </div>
       </div>
