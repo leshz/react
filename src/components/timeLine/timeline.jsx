@@ -5,18 +5,15 @@ import WriteState from '../stateInput/stateInput';
 class TimeLine extends React.Component {
   constructor(props) {
     super(props);
-    const { data } = props;
-    const { posts } = data;
-    this.state = {
-      posts,
-    };
     this.makeANewPost = this.makeANewPost.bind(this);
+    const { data } = this.props;
+    this.state = { data };
   }
 
   makeANewPost(ev, text) {
     const newPost = {
       post: {
-        userName: 'TEST',
+        userName: 'Jeffer Barragan',
         avatarURL: 'https://picsum.photos/280',
         timePost: '0 days',
         contentPost: text,
@@ -24,21 +21,25 @@ class TimeLine extends React.Component {
         comments: [],
       },
     };
-    const { posts } = this.state;
-    posts.push(newPost);
-    this.setState({ posts });
+    const { data } = this.state;
+    // data.posts.unshift(newPost);
+    //! Bug con unshift
+    data.posts.push(newPost);
+    this.setState({ data });
   }
 
   render() {
-    const { posts } = this.state;
+    const { data } = this.state;
+    const { posts } = data;
 
-    const cards = posts.map((post, index) => <CardStade key={index} postInfo={post} />);
     return (
       <div>
         <section>
           <WriteState onSubmit={this.makeANewPost} />
         </section>
-        {cards}
+        { posts.map((post, index) => {
+          return <CardStade key={index} postInfo={post} />;
+        })}
       </div>
     );
   }

@@ -21,7 +21,7 @@ class CardStade extends React.Component {
 
     const { post } = this.state;
     const newComment = {
-      userName: 'PRUEBA DE COMMENT',
+      userName: 'Jeffer Barragan',
       avatarURL: 'https://picsum.photos/200',
       contentPost: text,
       timeComment: '0 days',
