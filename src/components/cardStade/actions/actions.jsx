@@ -1,13 +1,32 @@
 import React from 'react';
 import './actions.scss';
 
-const Actions = () => (
+class Actions extends React.Component {
 
-  <div className='actions'>
-    <button type='button' className='actions--button'>Reaccionar</button>
-    <button type='button' className='actions--button'>Comentar</button>
-  </div>
-);
+  constructor(props) {
+    super(props);
+    this.handleReactionButton = this.handleReactionButton.bind(this);
+
+  }
+
+  handleReactionButton() {
+
+    this.props.onClick();
+
+  }
+
+  render() {
+
+    return (
+      <div className='actions'>
+        <button type='button' className='actions--button' onClick={this.handleReactionButton}>Reaccionar</button>
+        <button type='button' className='actions--button'>Comentar</button>
+      </div>
+
+    );
+  }
+
+}
 
 export default Actions;
 

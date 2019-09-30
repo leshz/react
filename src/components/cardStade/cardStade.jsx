@@ -10,18 +10,15 @@ class CardStade extends React.Component {
   constructor(props) {
     super(props);
 
-
     const { postInfo } = this.props;
     const { post } = postInfo;
     this.state = { post, showComment: false };
 
     this.makeAComment = this.makeAComment.bind(this);
+    this.makeAReaction = this.makeAReaction.bind(this);
   }
 
   makeAComment(ev, text) {
-
-    debugger;
-
     const { post } = this.state;
     const newComment = {
       userName: 'Jeffer Barragan',
@@ -29,8 +26,24 @@ class CardStade extends React.Component {
       contentPost: text,
       timeComment: '0 days',
     };
-
     post.comments.push(newComment);
+    this.setState(post);
+  }
+
+  static getRandomNumber(min, max) {
+    return parseInt(Math.random() * (max - min) + min, 10);
+  }
+
+  makeAReaction() {
+
+    const { post } = this.state;
+    const emojis = ['😁', '❤️', '💎', '🤟🏻', '😃', '👌🏻', '😎', '🤬'];
+    const lastReactions = post.reactions.slice(-2);
+    const number = CardStade.getRandomNumber(0, emojis.length);
+
+    lastReactions.push(emojis[number]);
+    post.reactions = lastReactions;
+
     this.setState(post);
   }
 
@@ -53,7 +66,7 @@ class CardStade extends React.Component {
             </div>
           </article>
           <Resume reactions={post.reactions} comments={post.comments.length} />
-          <Actions />
+          <Actions onClick={this.makeAReaction} />
           <div className='comments'>
             {post.comments.map((comment, index) => {
               // eslint-disable-next-line react/no-array-index-key
