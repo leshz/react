@@ -22,14 +22,16 @@ class Actions extends React.Component {
   }
 
   render() {
-
-    return (
-      <div className='actions'>
-        <button type='button' className='actions--button' onClick={this.handleReactionButton}>Reaccionar</button>
-        <button type='button' className='actions--button' onClick={this.handleCommentButton}>Comentar</button>
-      </div>
-
-    );
+    const { render, className } = this.props;
+    if (render) {
+      return (
+        <div className={`actions${className || ''}`}>
+          <button type='button' className='actions--button' onClick={this.handleReactionButton}>Reaccionar</button>
+          <button type='button' className='actions--button' onClick={this.handleCommentButton}>Comentar</button>
+        </div>
+      );
+    }
+    return '';
   }
 
 }

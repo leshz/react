@@ -16,6 +16,8 @@ class CardStade extends React.Component {
 
     this.makeAComment = this.makeAComment.bind(this);
     this.makeAReaction = this.makeAReaction.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+
   }
 
   makeAComment(text) {
@@ -59,8 +61,30 @@ class CardStade extends React.Component {
 
   }
 
+  componentDidMount() {
+
+    const innerW = window.innerWidth;
+    const screenW = window.screen.availWidth;
+    const navigatorWidth = innerW <= screenW ? innerW : screenW;
+    const render = !(navigatorWidth > 500);
+
+    this.setState({ render });
+
+    window.matchMedia('(max-width: 500px)').addListener((ev) => {
+      if (ev.matches) {
+        this.setState({ render: true });
+      }
+    });
+
+    window.matchMedia('(min-width: 500px)').addListener((ev) => {
+      if (ev.matches) {
+        this.setState({ render: false });
+      }
+    });
+  }
+
   render() {
-    const { post, showComment } = this.state;
+    const { post, showComment, render } = this.state;
 
     return (
       <section>
@@ -76,9 +100,10 @@ class CardStade extends React.Component {
                 {post.contentPost}
               </p>
             </div>
+            <Actions render={!render} className='-inside' onClick={this.makeAReaction} />
           </article>
           <Resume reactions={post.reactions} comments={post.comments.length} />
-          <Actions onClick={this.makeAReaction} />
+          <Actions render={render} onClick={this.makeAReaction} />
           <div className='comments'>
             {post.comments.map((comment, index) => {
               // eslint-disable-next-line react/no-array-index-key
