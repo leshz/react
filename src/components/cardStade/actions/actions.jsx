@@ -6,13 +6,11 @@ class Actions extends React.Component {
   constructor(props) {
     super(props);
     this.handleReactionButton = this.handleReactionButton.bind(this);
-
   }
 
   handleReactionButton() {
-
-    this.props.onClick();
-
+    const { onClick } = this.props;
+    onClick();
   }
 
   render() {
