@@ -1,5 +1,4 @@
 import React from 'react';
-import { log } from 'util';
 import CardStade from '../cardStade/cardStade';
 import WriteState from '../stateInput/stateInput';
 
@@ -26,13 +25,12 @@ class TimeLine extends React.Component {
       },
     };
     const { posts } = this.state;
-    posts.unshift(newPost);
+    posts.push(newPost);
     this.setState({ posts });
   }
 
   render() {
     const { posts } = this.state;
-    console.log(posts);
 
     const cards = posts.map((post, index) => <CardStade key={index} postInfo={post} />);
     return (
