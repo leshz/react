@@ -1,6 +1,7 @@
 import React from 'react';
+import { log } from 'util';
 import CardStade from '../cardStade/cardStade';
-import WriteStade from '../writeStade/writeStade';
+import WriteState from '../stateInput/stateInput';
 
 class TimeLine extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class TimeLine extends React.Component {
   makeANewPost(ev, text) {
     const newPost = {
       post: {
-        userName: 'Jeffer Barragan',
+        userName: 'TEST',
         avatarURL: 'https://picsum.photos/280',
         timePost: '0 days',
         contentPost: text,
@@ -31,13 +32,15 @@ class TimeLine extends React.Component {
 
   render() {
     const { posts } = this.state;
+    console.log(posts);
+
+    const cards = posts.map((post, index) => <CardStade key={index} postInfo={post} />);
     return (
       <div>
-        <WriteStade onSubmit={this.makeANewPost} />
-        {posts.map((post, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <CardStade key={index} postInfo={post} />
-        ))}
+        <section>
+          <WriteState onSubmit={this.makeANewPost} />
+        </section>
+        {cards}
       </div>
     );
   }

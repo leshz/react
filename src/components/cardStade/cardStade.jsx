@@ -3,15 +3,36 @@ import './cardStade.scss';
 import Resume from './resumen/resume';
 import Comment from './comment/comment';
 import Actions from './actions/actions';
+import WriteState from '../stateInput/stateInput';
 
 class CardStade extends React.Component {
 
-  render() {
+  constructor(props) {
+    super(props);
 
     const { postInfo } = this.props;
     const { post } = postInfo;
-    // eslint-disable-next-line react/no-array-index-key
-    const comments = post.comments.map((comment, index) => <Comment key={index} data={comment} />);
+    this.state = { post, showComment: false };
+
+    this.makeAComment = this.makeAComment.bind(this);
+  }
+
+  makeAComment(ev, text) {
+
+    const { post } = this.state;
+    const newComment = {
+      userName: 'PRUEBA DE COMMENT',
+      avatarURL: 'https://picsum.photos/200',
+      contentPost: text,
+      timeComment: '0 days',
+    };
+
+    post.comments.push(newComment);
+    this.setState(post);
+  }
+
+  render() {
+    const { post, showComment } = this.state;
 
     return (
       <section>
@@ -31,7 +52,11 @@ class CardStade extends React.Component {
           <Resume reactions={post.reactions} comments={post.comments.length} />
           <Actions />
           <div className='comments'>
-            {comments}
+            {post.comments.map((comment, index) => {
+              // eslint-disable-next-line react/no-array-index-key
+              return <Comment key={index} data={comment} />;
+            })}
+            <WriteState className={`${showComment ? '' : 'hide'}`} onSubmit={this.makeAComment} />
           </div>
         </div>
       </section>
