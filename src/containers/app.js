@@ -10,7 +10,7 @@ const App = () => {
       <Header />
       <div className='container'>
 
-        <TimeLine data={data} />
+        <TimeLine data={data.posts} />
       </div>
     </div>
   );

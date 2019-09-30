@@ -10,6 +10,7 @@ class CardStade extends React.Component {
   constructor(props) {
     super(props);
 
+
     const { postInfo } = this.props;
     const { post } = postInfo;
     this.state = { post, showComment: false };
@@ -18,6 +19,8 @@ class CardStade extends React.Component {
   }
 
   makeAComment(ev, text) {
+
+    debugger;
 
     const { post } = this.state;
     const newComment = {

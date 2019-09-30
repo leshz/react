@@ -7,7 +7,7 @@ class TimeLine extends React.Component {
     super(props);
     this.makeANewPost = this.makeANewPost.bind(this);
     const { data } = this.props;
-    this.state = { data };
+    this.state = { posts: data };
   }
 
   makeANewPost(ev, text) {
@@ -21,16 +21,14 @@ class TimeLine extends React.Component {
         comments: [],
       },
     };
-    const { data } = this.state;
-    // data.posts.unshift(newPost);
-    //! Bug con unshift
-    data.posts.push(newPost);
-    this.setState({ data });
+    const { posts } = this.state;
+    posts.push(newPost);
+    this.setState({ posts });
   }
 
   render() {
-    const { data } = this.state;
-    const { posts } = data;
+
+    const { posts } = this.state;
 
     return (
       <div>
