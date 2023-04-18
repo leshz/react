@@ -9,7 +9,6 @@ const App = () => {
     <div>
       <Header />
       <div className='container'>
-
         <TimeLine data={data.posts} />
       </div>
     </div>
